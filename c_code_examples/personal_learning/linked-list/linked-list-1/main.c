@@ -1,23 +1,31 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+typedef struct node
+{
+  int data;
+  struct node *next; 
+} node;
+
+void PrintLinkedList(node *pointer)
+{
+  while(pointer != NULL)
+  {
+    printf("Linked list item: %d\n", pointer->data);
+    pointer = pointer->next;
+  }  
+}
 
 int main() {
 
-  struct node
-  {
-    int data;
-    struct node *next; 
-  };
+  static node *head = NULL;
+  static node *one = NULL;
+  static node *two = NULL;
+  static node *three = NULL;
 
-  struct node *head = NULL;
-  struct node *one = NULL;
-  struct node *two = NULL;
-  struct node *three = NULL;
-
-  one = malloc(sizeof(struct node));
-  two = malloc(sizeof(struct node));
-  three = malloc(sizeof(struct node));
+  one = malloc(sizeof(node));
+  two = malloc(sizeof(node));
+  three = malloc(sizeof(node));
 
   one->data = 2;
   two->data = 3;
@@ -30,12 +38,7 @@ int main() {
   head = one;
 
   // print contents of list
-
-  while(head != NULL)
-  {
-    printf("Linked list item: %d\n", head->data);
-    head = head->next;
-  }  
+  PrintLinkedList(head); 
    
    return 0;
 }
