@@ -37,7 +37,6 @@ int main() {
 
   head = one;
 
-  // print contents of list
   PrintLinkedList(head); 
    
    return 0;
