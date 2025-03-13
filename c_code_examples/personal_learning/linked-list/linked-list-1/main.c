@@ -31,10 +31,10 @@ int main() {
 
   // print contents of list
 
-  while(head->next != NULL)
+  while(head != NULL)
   {
+    printf("Linked list item: %d\n", head->data);
     head = head->next;
-    printf("Linked list item: %d", head->data);
   }  
    
    return 0;
