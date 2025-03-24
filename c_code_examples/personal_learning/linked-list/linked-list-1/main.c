@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
 
 typedef struct node
 {
@@ -14,6 +15,23 @@ void PrintLinkedList(node *pointer)
     printf("Linked list item: %d\n", pointer->data);
     pointer = pointer->next;
   }  
+}
+
+void PrintLinkedListReverse(node *pointer, uint8_t const size)
+{
+  int *storageArray = malloc((size) * sizeof(int)); 
+  uint8_t localSize = size-1; 
+
+  while(pointer != NULL)
+  {
+    storageArray[localSize] = pointer->data;
+    pointer = pointer->next; 
+    localSize--;
+  }
+  for(int index = 0U; index < size; index++)
+  {
+    printf("Print linked list backwards: %d\n", storageArray[index]);
+  }
 }
 
 int main() {
@@ -37,7 +55,9 @@ int main() {
 
   head = one;
 
-  PrintLinkedList(head); 
+  // PrintLinkedList(head); 
+
+  PrintLinkedListReverse(head, 3U);
    
-   return 0;
+  return 0;
 }
