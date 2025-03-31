@@ -8,17 +8,22 @@ typedef struct node
   struct node *next; 
 } node;
 
+void CheckForEndOfLinkedList(node *pointer);
+
 void PrintLinkedList(node *pointer)
 {
+  printf("Normal order print\n");
+
   while(pointer != NULL)
   {
-    printf("Linked list item: %d\n", pointer->data);
+    printf("Item: %d\n", pointer->data);
     pointer = pointer->next;
   }  
 }
 
 void PrintLinkedListReverse(node *pointer, uint8_t const size)
 {
+  printf("Reverse order print\n");
   int *storageArray = malloc((size) * sizeof(int)); 
   uint8_t localSize = size-1; 
 
@@ -28,10 +33,27 @@ void PrintLinkedListReverse(node *pointer, uint8_t const size)
     pointer = pointer->next; 
     localSize--;
   }
+  
   for(int index = 0U; index < size; index++)
   {
-    printf("Print linked list backwards: %d\n", storageArray[index]);
+    printf("Item: %d\n", storageArray[index]);
   }
+}
+
+void PrintLinkedListReverseRecursively(node *pointer)
+{
+  printf("Recursive reverse order print\n"); 
+  CheckForEndOfLinkedList(pointer);
+}
+
+void CheckForEndOfLinkedList(node *pointer)
+{
+  if(pointer == NULL)
+  { 
+    return;
+  }
+  CheckForEndOfLinkedList(pointer->next);
+  printf("Item: %d\n", pointer->data);  
 }
 
 int main() {
@@ -55,9 +77,11 @@ int main() {
 
   head = one;
 
-  // PrintLinkedList(head); 
+  PrintLinkedList(head); 
 
   PrintLinkedListReverse(head, 3U);
+
+  PrintLinkedListReverseRecursively(head);
    
   return 0;
 }
