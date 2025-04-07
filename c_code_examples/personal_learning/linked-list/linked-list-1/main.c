@@ -43,7 +43,7 @@ node* addTwoNumbers(node* l1, node* l2) {
     l2 = l2->next;
   }
   
-  return l1;
+  return storeListStart;
 }
 
 void PrintLinkedList(node *pointer)
@@ -157,5 +157,8 @@ int main() {
 
 
   node *result = addTwoNumbers(head1, head2);
+
+  PrintLinkedList(result);
+
   return 0;
 }
